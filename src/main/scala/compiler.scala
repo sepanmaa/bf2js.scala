@@ -46,17 +46,18 @@ object Bf2js extends JSApp {
     jQuery("#target").value("");
   }
 
+  def addButton(text: String, func: () => Unit): Unit = {
+    val id = text.replace(' ', '_');
+    jQuery("body").append(s"<button id='$id'>$text</button>");
+    jQuery(s"#$id").click(func);
+  }
+
   def main(): Unit = {
-    jQuery("body").append("<p>Brainfuck to JavaScript compiler</p>");
-    jQuery("body").append(s"<textarea rows=20 cols=80 id='source' placeholder='source'/>");
-    jQuery("body").append(s"<textarea rows=20 cols=80 id='target' placeholder='target'/>");
-    jQuery("body").append("<button id='compile'>Compile</button>");
-    jQuery("body").append("<button id='run'>Run</button>");
-    jQuery("body").append("<button id='hello'>Hello world</button>");
-    jQuery("body").append("<button id='clear'>Clear</button>");
-    jQuery("#hello").click(hello _);
-    jQuery("#compile").click(compile _);
-    jQuery("#run").click(run _);
-    jQuery("#clear").click(clear _);
+    jQuery("body").append("<p>Brainfuck to JavaScript compiler</p>")
+      .append("<textarea rows=20 cols=80 id='source' placeholder='source'/>")
+      .append("<textarea rows=20 cols=80 id='target' placeholder='target'/>");
+    List(("Hello world", hello _), ("Compile", compile _), ("Run", run _), ("Clear", clear _)).map{
+      case (text, func) => addButton(text, func)
+    }
   }
 }
