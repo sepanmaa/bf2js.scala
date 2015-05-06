@@ -1,6 +1,6 @@
 # Bf2js.scala
 
-Bf2js.scala is a Brainfuck to JavaScript compiler written in Scala.js.
+Bf2js.scala is a Brainfuck to JavaScript compiler written in Scala.js. [Try it!](http://sepanmaa.github.io/brainfuck.html)
 
 # License
 
